@@ -1,4 +1,5 @@
 import math as ma
+import numpy as np
 
 # Función que elige entre las dos distribuciones
 
@@ -34,7 +35,18 @@ def inputLambda():
 
 
 def poissonDistributionRandomGen(lambdaparam):
-    print("todo")
+    a = pow(ma.e, -float(lambdaparam))
+    b = float(1)
+    n = int(0)
+    np.random.seed(0)
+    arr = np.random.uniform(0, 1, 100)
+    i = int(0)
+    while(b >= a and i < 100):
+        b = arr[i] * b
+        i = i + 1
+        n = n + 1
+    return n
+
 # Función que ejecuta la distribución de Exponencial
 
 
@@ -42,14 +54,15 @@ def exponentialDistributionRandomGen(lambdaparam):
     logparam = inputValue()
     division = float(1 / float(lambdaparam))
     result = division * float(ma.log(float(logparam)))
-    print(ma.fabs(result))
+    print(abs(result))
 
 # Función que contiene la totalidad del programa
 
 
 def main():
     lamb = inputLambda()
-    exponentialDistributionRandomGen(float(lamb))
+    #exponentialDistributionRandomGen(float(lamb))
+    print(poissonDistributionRandomGen(lamb))
 
 
 main()
