@@ -63,8 +63,10 @@ def main():
     lamb = inputLambda()
     val = int(chooseDistribution())
     if val == 0:
+        print("El resultado es:")
         print(poissonDistributionRandomGen(lamb))
     else:
+        print("El resultado es:")
         print(exponentialDistributionRandomGen(lamb))
 
 main()
