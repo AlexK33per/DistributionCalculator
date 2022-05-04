@@ -61,8 +61,10 @@ def exponentialDistributionRandomGen(lambdaparam):
 
 def main():
     lamb = inputLambda()
-    #exponentialDistributionRandomGen(float(lamb))
-    print(poissonDistributionRandomGen(lamb))
-
+    val = int(chooseDistribution())
+    if val == 0:
+        print(poissonDistributionRandomGen(lamb))
+    else:
+        print(exponentialDistributionRandomGen(lamb))
 
 main()
