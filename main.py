@@ -2,6 +2,7 @@ import math as ma
 import numpy as np
 import pandas as excel
 from prettytable import PrettyTable
+# import openpyxl
 
 # Función que elige entre las dos distribuciones
 
@@ -71,22 +72,37 @@ def exponentialDistributionRandomGen(betaparam):
 # Función que contiene la totalidad del programa
 
 def main():
-    val = int(chooseDistribution())
+    nof = 0
+    val = 0
     exp = list()
     poisson = list()
     while(val > -1 and val < 2):
+        val = int(chooseDistribution())
         if val == 0:
             lamb = inputParam(val)
             print("El resultado es:")
             poisson = poissonDistributionRandomGen(lamb)
-            tabulate([])
+            table = PrettyTable()
+            table.add_column("Xi", list(range(100)))
+            table.add_column(fieldname = "Número Generado de Poisson", column = poisson)
+            print(table)
+            data = excel.DataFrame({
+            "Poisson":poisson,
+            })
+            data.to_excel("Lambda" + str(nof) + ".xlsx", index = False)
+            nof = nof + 1
         elif val == 1:
             beta = inputParam(val)
             print("El resultado es:")
             exp = exponentialDistributionRandomGen(beta)
-            tabulate(list(range(100)), beta, headers = ["Xi", "Número generado"])
-    data = excel.DataFrame({"Poisson":poisson, "Exponencial":exp})
-    data.to_excel("Datos_Generados.xlsx", index = False)
+            table.add_column("Xi", list(range(100)))
+            table.add_column(fieldname = "Número Generado de Exponencial", column = exp)
+            print(table)
+            data = excel.DataFrame({
+            "Exponencial":exp
+            })
+            data.to_excel("Exponencial" + str(nof) + ".xlsx", index = False)
+            
 
 main()
 
