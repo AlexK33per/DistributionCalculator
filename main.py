@@ -35,26 +35,33 @@ def inputLambda():
 
 
 def poissonDistributionRandomGen(lambdaparam):
-    a = pow(ma.e, -float(lambdaparam))
-    b = float(1)
-    n = int(0)
-    np.random.seed(0)
-    arr = np.random.uniform(0, 1, 100)
-    i = int(0)
-    while(b >= a and i < 100):
-        b = arr[i] * b
+    i = 0
+    while(i < 100):
+        a = pow(ma.e, -float(lambdaparam))
+        b = float(1)
+        n = int(0)
+        np.random.seed(0)
+        arr = np.random.uniform(0, 1, 100)
+        i = int(0)
+        while(b >= a and i < 100):
+            b = arr[i] * b
+            i = i + 1
+            n = n + 1
+        print(n)
         i = i + 1
-        n = n + 1
-    return n
 
 # Función que ejecuta la distribución de Exponencial
 
 
 def exponentialDistributionRandomGen(lambdaparam):
-    logparam = inputValue()
-    division = float(1 / float(lambdaparam))
-    result = division * float(ma.log(float(logparam)))
-    print(abs(result))
+    i = 0
+    while(i < 100):
+        arr = np.random.uniform(0, 1, 1)
+        logparam = arr[0]
+        division = float(1 / float(lambdaparam))
+        result = division * float(ma.log(float(logparam)))
+        print(abs(result))
+        i = i + 1
 
 # Función que contiene la totalidad del programa
 
@@ -64,9 +71,10 @@ def main():
     val = int(chooseDistribution())
     if val == 0:
         print("El resultado es:")
-        print(poissonDistributionRandomGen(lamb))
+        # print(poissonDistributionRandomGen(lamb))
+        poissonDistributionRandomGen(lamb)
     else:
         print("El resultado es:")
-        print(exponentialDistributionRandomGen(lamb))
+        exponentialDistributionRandomGen(lamb)
 
 main()
