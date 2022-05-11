@@ -45,7 +45,7 @@ def poissonDistributionRandomGen(lambdaparam):
         b = float(1)
         n = int(0)
         np.random.seed()
-        arr = np.random.uniform(0, 1, 100)
+        arr = np.random.uniform(0, 1, 1000)
         i = int(0)
         while(b >= a and i < 100):
             b = arr[i] * b
@@ -102,6 +102,6 @@ def main():
             "Exponencial":exp
             })
             data.to_excel("Exponencial" + str(nof) + ".xlsx", index = False)
-            
+            nof = nof + 1          
 
 main()
