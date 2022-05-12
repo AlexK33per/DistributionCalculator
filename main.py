@@ -47,7 +47,7 @@ def poissonDistributionRandomGen(lambdaparam):
         np.random.seed()
         arr = np.random.uniform(0, 1, 1000)
         i = int(0)
-        while(b >= a and i < 100):
+        while(b >= a and i < 1000):
             b = arr[i] * b
             i = i + 1
             n = n + 1
